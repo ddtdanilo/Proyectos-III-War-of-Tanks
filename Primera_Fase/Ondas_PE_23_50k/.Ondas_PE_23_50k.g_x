@@ -1,0 +1,35 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/sEmision.c" FileDate="2014-09-17, 22:00:18" FileAge="1411007418149" FileType="45637" CompNumb="10" />
+      <File Name="Sources/Events.c" FileDate="2014-09-17, 22:00:18" FileAge="1411007418242" FileType="131328" />
+      <File Name="Documentation/Ondas_PE_23_50k_Settings.xml" FileDate="2014-09-17, 22:00:18" FileAge="1411007418336" FileType="3072" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2014-09-17, 21:50:58" FileAge="1411006858502" FileType="45637" />
+      <File Name="Documentation/Ondas_PE_23_50k_SIGNALS.txt" FileDate="2014-09-17, 22:00:18" FileAge="1411007418286" FileType="3072" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2014-09-17, 21:50:58" FileAge="1411006858485" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2014-09-17, 21:50:58" FileAge="1411006858471" FileType="45637" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2014-09-17, 21:50:58" FileAge="1411006858439" FileType="8" CompNumb="4" />
+      <File Name="Sources/main.c" FileDate="2014-09-17, 22:00:18" FileAge="1411007418191" FileType="128" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2014-09-17, 21:50:58" FileAge="1411006858496" FileType="45637" />
+      <File Name="Generated_Code/Bit1.h" FileDate="2014-09-17, 22:00:18" FileAge="1411007418165" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2014-09-17, 21:50:58" FileAge="1411006858523" FileType="45637" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2014-09-17, 22:00:18" FileAge="1411007418202" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Bit1.c" FileDate="2014-09-17, 22:00:18" FileAge="1411007418162" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/sEmision.h" FileDate="2014-09-17, 22:00:18" FileAge="1411007418157" FileType="45637" CompNumb="10" />
+      <File Name="Sources/Events.h" FileDate="2014-09-17, 22:00:18" FileAge="1411007418235" FileType="131328" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2014-09-17, 22:00:18" FileAge="1411007418222" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2014-09-17, 22:00:18" FileAge="1411007418215" FileType="45637" CompNumb="4" />
+      <File Name="Documentation/Ondas_PE_23_50k.txt" FileDate="2014-09-17, 22:00:18" FileAge="1411007418365" FileType="3072" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>2</CodeGenReference>
+</CodeGenerationInfo>
