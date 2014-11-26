@@ -1,4 +1,5 @@
 
+
 Generated_Code/Serial_2_c.obj: \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Project_Headers/../Generated_Code/Serial_2.c \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/Serial_2.h \

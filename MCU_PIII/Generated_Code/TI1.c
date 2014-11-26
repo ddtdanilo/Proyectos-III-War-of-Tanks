@@ -6,7 +6,7 @@
 **     Component   : TimerInt
 **     Version     : Component 02.161, Driver 01.23, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-11-19, 10:27, # CodeGen: 73
+**     Date/Time   : 2014-11-26, 10:54, # CodeGen: 112
 **     Abstract    :
 **         This component "TimerInt" implements a periodic interrupt.
 **         When the component and its events are enabled, the "OnInterrupt"
@@ -23,11 +23,11 @@
 **             Prescaler               : divide-by-1
 **             Clock                   : 32768 Hz
 **           Initial period/frequency
-**             Xtal ticks              : 3
-**             microseconds            : 92
-**             seconds (real)          : 0.000091552734
-**             Hz                      : 10923
-**             kHz                     : 11
+**             Xtal ticks              : 16
+**             microseconds            : 488
+**             seconds (real)          : 0.00048828125
+**             Hz                      : 2048
+**             kHz                     : 2
 **
 **         Runtime setting             : none
 **
@@ -221,7 +221,7 @@ void TI1_Init(void)
   /* RTCSC: RTIF=0,RTCLKS=0,RTIE=0,RTCPS=0 */
   setReg8(RTCSC, 0x00U);               /* Stop HW */ 
   EnUser = TRUE;                       /* Enable device */
-  TI1_SetCV(0x02U);                    /* Initialize appropriate value to the compare/modulo/reload register */
+  TI1_SetCV(0x0FU);                    /* Initialize appropriate value to the compare/modulo/reload register */
   RTCMOD = RTCMOD;                     /* Reset HW counter */
   HWEnDi();
 }

@@ -33,7 +33,7 @@ extern unsigned int tiempo; //Tiempo de ultrasonido
 extern int distancia;
 extern bool objeto_cerca;
 extern bool movimiento;
-
+extern bool choque;
 
 
 typedef union{

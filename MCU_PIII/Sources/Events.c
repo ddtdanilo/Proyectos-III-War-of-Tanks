@@ -60,6 +60,8 @@ byte DIFERENCIA = 0x00;
 byte error_capture;
 DATA tiempo_d;
 bool tiempo_ok = TRUE;
+bool choque = FALSE;
+word divisor = 0x00;
 
 //extern unsigned int tiempo; //Tiempo de ultrasonido
 //extern unsigned int distancia;
@@ -310,13 +312,13 @@ void Enconder_Int_2_OnInterrupt(void)
 {
 		
 		
-		if(objeto_cerca && N_Interrupcion < N)
+		if((objeto_cerca && N_Interrupcion < N))
 		{
 					movimiento = FALSE;
 					Giro(VEL_MAX_1,VEL_MAX_2,'d');
 					N_Interrupcion++;
 					//DISPARO_OUT_PutVal(TRUE);
-					DISPARO_OUT_PutVal(TRUE);
+					//DISPARO_OUT_PutVal(TRUE);
 		}
 		else
 		 {
@@ -331,6 +333,7 @@ void Enconder_Int_2_OnInterrupt(void)
 			   N_Interrupcion = 0x00;
 			  
 		   }
+		   
 		   
 		 }
 		//DISPARO_OUT_NegVal();
@@ -396,7 +399,8 @@ void ADC_OnEnd(void)
 //Cuando llegan 3 bytes, toma el segundo dato.
 void  Serial_2_OnFullRxBuf(void)
 {
-	DISPARO_OUT_NegVal();
+	divisor = 0;
+	//DISPARO_OUT_NegVal();
 	//Obtengo la data
 	(void)Serial_2_RecvBlock(&dataOut2,SIZE_DATA_S2,&enviado);
 	(void)Serial_2_ClearRxBuf();
@@ -409,29 +413,40 @@ void  Serial_2_OnFullRxBuf(void)
 	
 	switch(COMANDO_ENTRANTE)
 	{
+		
 		//ACKNOWLEDGE Tanque 1
 		case 0x00:
+			 ACKNOWLEDGE_LED_PutVal(TRUE);
+			//if(!objeto_cerca) movimiento = TRUE;
+			 movimiento = TRUE;
 			//Cambia el estado del led.
 			
 			break;
 		//Fuera Pista Derecha Tanque 1
 		case 0x01:
-			DISPARO_OUT_NegVal();
+			 ACKNOWLEDGE_LED_PutVal(TRUE);
 			break;
 		//Fuera Pista Izquierda Tanque 1
 		case 0x02:
+			 ACKNOWLEDGE_LED_PutVal(TRUE);
+			
 			break;
 		//Fuera Pista Abajo Tanque 1			
 		case 0x03:
+			 ACKNOWLEDGE_LED_PutVal(TRUE);
+			
 			break;
 		//Fuera Pista Arriba Tanque 1	
 		case 0x04:
+			 ACKNOWLEDGE_LED_PutVal(TRUE);
+			
 			break;
 		//STOP Tanque 1	
 		case 0x05:
+			 ACKNOWLEDGE_LED_PutVal(TRUE);
 			//Cambia el estado del led de disparo.
-			DISPARO_OUT_NegVal();
 			break;
+		
 	}
 	
 	
@@ -455,6 +470,18 @@ void LED_OUT_1K(void)
 {
   /* Write your code here ... */
   (void)LED_OUT_1K_SQ_NegVal();
+  //choque = FALSE;
+  //ACKNOWLEDGE_LED_PutVal(TRUE);
+  if(divisor < 1000)
+  {
+	  //ACKNOWLEDGE_LED_PutVal(FALSE);
+	  divisor++;
+  }
+  else if(divisor == 1000)
+  	  	 {
+	  	  divisor = 0;
+	  	  ACKNOWLEDGE_LED_PutVal(FALSE);
+         }
 }
 
 /*
@@ -515,6 +542,7 @@ void Cap1_OnCapture(void)
 		{
 			objeto_cerca = FALSE;
 			//movimiento = TRUE;
+			
 		}
 		
 	}

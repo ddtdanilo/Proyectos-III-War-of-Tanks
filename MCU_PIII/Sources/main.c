@@ -267,11 +267,12 @@ if(movimiento)
 		{
 			DISPARO_OUT_PutVal(TRUE);
 			MovimientoLineal(0x00,'s');
+			movimiento = FALSE;
 		}
 		else
 		{
 			DISPARO_OUT_PutVal(FALSE);
-			ACKNOWLEDGE_LED_PutVal(FALSE);
+			Bit1_PutVal(FALSE);
 
 			if(RECEPTOR_1 > RECEPTOR_2)
 			{
@@ -301,7 +302,8 @@ if(movimiento)
 			else// Exploracion
 			{
 				//EXPLORACION = TRUE;
-				ACKNOWLEDGE_LED_PutVal(TRUE);
+				//Bit_PutVal(TRUE);
+				Bit1_PutVal(TRUE);
 				Movimiento2Motores(VEL_MAX_1,VEL_MAX_2,'a');
 				//else EXPLORACION = TRUE;
 			}

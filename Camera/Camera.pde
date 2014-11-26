@@ -6,8 +6,8 @@ void setup_camera() {
   video = new Capture(this, CameraHeight, CameraWidth);
 
   video.start();
-  // Start off tracking for red
-  //trackColor = color(0, 255, 0);
+  
+  trackColor_Disp = color(0, 255, 0); //Green LED 
   
   Equipo10=loadImage("tanque.png");
   Equipo11=loadImage("tanque.png");
@@ -73,31 +73,31 @@ void draw_camera() {
       float r5 = red(trackColor4);
       float g5 = green(trackColor4);
       float b5 = blue(trackColor4);
-      // Using euclidean distance to compare colors
-      float d = dist(r1, g1, b1, r2, g2, b2); // We are using the dist( ) function to compare the current color with the color we are tracking.
+      
+      float d = dist(r1, g1, b1, r2, g2, b2); // Euclidian distance between current color and track color
       float d2= dist(r1, g1, b1, r3, g3, b3);
       float d3= dist(r1, g1, b1, r4, g4, b4);
       float d4= dist(r1, g1, b1, r5, g5, b5);
      
       // If current color is more similar to tracked color than
       // closest color, save current location and current difference
-      if (d < worldRecord) {
-        cont++;
-        worldRecord = d;
+      if (d < worldRecord) { //Current color similar to track color
+        cont++;              //then the location will be saved along
+        worldRecord = d;     //with the euclidian distance between them
         
         closestXOld=closestX;
-        closestYOld=closestY;//Posición anterior de los puntos de color
-        closestX = closestX+x; //nuevo=nuevapos+viejapos
-        closestY = closestY+y;
+        closestYOld=closestY;
+        closestX = closestX+x; //Color Average. It will be divided by cont
+        closestY = closestY+y; //This happens for all the colors to be tracked 
         
       }
-      if (d2 < worldRecord2) {
+      if (d2 < worldRecord2) { //Theres a d3 and a d4 too
         cont2++;
         worldRecord2 = d2;
        
         closestXOld2=closestX2;
-        closestYOld2=closestY2;//Posición anterior de los puntos de color
-        closestX2 =closestX2+ x; //nuevo=nuevapos+viejapos
+        closestYOld2=closestY2;
+        closestX2 =closestX2+ x;
         closestY2 =closestY2+y;
         
       }
@@ -142,13 +142,13 @@ void draw_camera() {
         }*/
    
     noTint();
-    image(Equipo10,(closestX)/cont,(closestY)/cont);
-    int loc1 = closestX/cont + (closestY/cont)*video.width;
-    Color10=get(closestX/cont,closestY/cont); //Check the color of the average found
+    image(Equipo10,(closestX)/cont,(closestY)/cont); //Draw a small tank sprite on the center of the color
+    
+    Color10=get(closestX/cont,closestY/cont); //Check the brightness of the average found
     Brillo1=brightness (Color10);
-    if(Brillo1>100){
+    if(Brillo1>100){ //If it's brigth enough then the leed is on 
       println("Led Disparo Equipo 1 Is On");
-      Intentos2=Intentos2-1;
+      Intentos2=Intentos2-1; 
       if(Intentos2==0)
         state=stateAfterAGame;
     }  

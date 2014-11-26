@@ -114,7 +114,7 @@
     </GenFiles>
     <SignalListFile>Documentation\MCU_PIII_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksHCS08CC</DestinationCompiler>
-    <ProjectModificationStamp>94</ProjectModificationStamp>
+    <ProjectModificationStamp>95</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -2363,8 +2363,8 @@
     <GenComponentVersion>02.161</GenComponentVersion>
     <GenDriverVersion>01.23</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1165185901</HeaderAge>
-    <CodeAge>1165185902</CodeAge>
+    <HeaderAge>1165645515</HeaderAge>
+    <CodeAge>1165645516</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>14</GenNumMethods>
     <Enable>true</Enable>

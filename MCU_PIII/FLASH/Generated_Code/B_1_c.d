@@ -1,4 +1,5 @@
 
+
 Generated_Code/B_1_c.obj: \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Project_Headers/../Generated_Code/B_1.c \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/B_1.h \

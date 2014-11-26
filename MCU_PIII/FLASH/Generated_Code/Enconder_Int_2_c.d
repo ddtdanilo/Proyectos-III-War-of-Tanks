@@ -1,4 +1,5 @@
 
+
 Generated_Code/Enconder_Int_2_c.obj: \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Project_Headers/../Generated_Code/Enconder_Int_2.c \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/Enconder_Int_2.h \

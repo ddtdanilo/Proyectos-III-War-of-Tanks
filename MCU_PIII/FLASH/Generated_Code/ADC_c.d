@@ -1,4 +1,5 @@
 
+
 Generated_Code/ADC_c.obj: \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Project_Headers/../Generated_Code/ADC.c \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Sources/Events.h \
