@@ -54,7 +54,7 @@ float PI = 3.1415;
 float fPERIMETRO;
 float fVEL_1;
 float fVEL_2;
-byte N = 20; //Numero de rendijas
+byte N = 35; //Numero de rendijas
 byte N_Interrupcion = 0x00;
 byte DIFERENCIA = 0x00;
 byte error_capture;
@@ -310,21 +310,30 @@ void Enconder_Int_2_OnInterrupt(void)
 {
 		
 		
-		if(objeto_cerca)
+		if(objeto_cerca && N_Interrupcion < N)
 		{
-			DISPARO_OUT_PutVal(TRUE);
-					if(N_Interrupcion == 0)
-					{ 
-						 Giro(VEL_MAX_1,VEL_MAX_2,'d');
-						 N_Interrupcion++;
-					}
-					else{
-							if(N_Interrupcion == N)
-							{ 
-								N_Interrupcion = 0x00;
-							} 
-						}
-		}else DISPARO_OUT_PutVal(FALSE);
+					movimiento = FALSE;
+					Giro(VEL_MAX_1,VEL_MAX_2,'d');
+					N_Interrupcion++;
+					//DISPARO_OUT_PutVal(TRUE);
+					DISPARO_OUT_PutVal(TRUE);
+		}
+		else
+		 {
+		   if(!objeto_cerca)
+		   {
+			   //N_Interrupcion = 0x00;
+			   movimiento = TRUE;
+		   }
+		   else//objeto_cerca = true && N_Int > N
+		   {
+			   //MovimientoLineal(0x00,'s');
+			   N_Interrupcion = 0x00;
+			  
+		   }
+		   
+		 }
+		//DISPARO_OUT_NegVal();
 		
 	
 		
@@ -499,13 +508,13 @@ void Cap1_OnCapture(void)
 		if(tiempo <= 0x0C)// 10 cm
 		{
 			objeto_cerca = TRUE;
-			movimiento = FALSE;
+			//movimiento = FALSE;
 			
 		}
 		else 
 		{
 			objeto_cerca = FALSE;
-			movimiento = TRUE;
+			//movimiento = TRUE;
 		}
 		
 	}

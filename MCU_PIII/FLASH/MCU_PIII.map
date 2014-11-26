@@ -44,7 +44,7 @@ _startupData is allocated at 0x21E6 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0xA0     96
-  _Copy    *toCopyDownBeg 0x314E
+  _Copy    *toCopyDownBeg 0x3148
 } _startupData;
 
 *********************************************************************************************
@@ -52,8 +52,8 @@ SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .data                             17   R/W       0xA0       0xB0   RAM
-.text                           3920     R     0x21F8     0x3147   ROM
-.rodata                            6     R     0x3148     0x314D   ROM
+.text                           3914     R     0x21F8     0x3141   ROM
+.rodata                            6     R     0x3142     0x3147   ROM
 .abs_section_ffbd                  1     R     0xFFBD     0xFFBD   .absSeg0
 .abs_section_ffbf                  1     R     0xFFBF     0xFFBF   .absSeg1
 .abs_section_0                     1   N/I        0x0        0x0   .absSeg2
@@ -242,10 +242,10 @@ Section Name                    Size  Type     From       To       Segment
 .init                            358     R     0x2080     0x21E5   ROM
 .common                           31   R/W       0xE1       0xFF   RAM
 .stack                           512   R/W      0x100      0x2FF   RAM
-.copy                             23     R     0x314E     0x3164   ROM
+.copy                             23     R     0x3148     0x315E   ROM
 
 Summary of section sizes per section type:
-READ_ONLY (R):        1127 (dec:     4391)
+READ_ONLY (R):        1121 (dec:     4385)
 READ_WRITE (R/W):      260 (dec:      608)
 NO_INIT (N/I):          CF (dec:      207)
 
@@ -266,20 +266,20 @@ MODULE:                 -- Events_c.obj --
      Serial_1_OnRxChar                         2231       1       1       1   .text       
      Serial_1_OnTxChar                         2232       1       1       1   .text       
      In_IRQ                                    2233      44      68       1   .text       
-     Enconder_Int_2_OnInterrupt                2277      33      51       1   .text       
-     Enconder_Int_1_OnInterrupt                22AA       1       1       1   .text       
-     ADC_OnEnd                                 22AB       1       1       1   .text       
-     Serial_2_OnFullRxBuf                      22AC      3F      63       1   .text       
-     LED_OUT_1K                                22EB       7       7       1   .text       
-     Serial_1_OnFreeTxBuf                      22F2       1       1       1   .text       
-     Cap1_OnCapture                            22F3      8C     140       1   .text       
+     Enconder_Int_2_OnInterrupt                2277      37      55       1   .text       
+     Enconder_Int_1_OnInterrupt                22AE       1       1       1   .text       
+     ADC_OnEnd                                 22AF       1       1       1   .text       
+     Serial_2_OnFullRxBuf                      22B0      3F      63       1   .text       
+     LED_OUT_1K                                22EF       7       7       1   .text       
+     Serial_1_OnFreeTxBuf                      22F6       1       1       1   .text       
+     Cap1_OnCapture                            22F7      82     130       1   .text       
 - VARIABLES:
      fN                                          A0       4       4       1   .data       
      fRADIO                                      A4       4       4       1   .data       
      PI                                          A8       4       4       1   .data       
      N                                           AC       1       1       1   .data       
      tiempo_ok                                   AD       1       1       3   .data       
-     N_Interrupcion                              B1       1       1       4   .bss        
+     N_Interrupcion                              B1       1       1       3   .bss        
      DIFERENCIA                                  B2       1       1       6   .bss        
      giro                                        B3       1       1       6   .bss        
      fPERIMETRO                                  E1       4       4       1   .common     
@@ -294,45 +294,45 @@ MODULE:                 -- Events_c.obj --
      distancia                                   B7       2       2       1   .bss        
 MODULE:                 -- Tanque_c.obj --
 - PROCEDURES:
-     MovimientoLineal                          237F      52      82       1   .text       
-     Movimiento2Motores                        23D1      53      83       1   .text       
-     Giro                                      2424      53      83       4   .text       
+     MovimientoLineal                          2379      52      82       1   .text       
+     Movimiento2Motores                        23CB      53      83       1   .text       
+     Giro                                      241E      53      83       4   .text       
 - VARIABLES:
 MODULE:                 -- main_c.obj --
 - PROCEDURES:
-     main                                      2477     15F     351       3   .text       
+     main                                      2471     15F     351       3   .text       
 - VARIABLES:
      VEL_MAX_1                                   AE       1       1       5   .data       
      VEL_MAX_2                                   AF       1       1       5   .data       
-     movimiento                                  B0       1       1       2   .data       
+     movimiento                                  B0       1       1       3   .data       
      objeto_cerca                                B9       1       1       4   .bss        
      DUTY_CYCLE                                  F2       1       1       2   .common     
      RECEPTOR_1                                  F3       1       1      11   .common     
      RECEPTOR_2                                  F4       1       1       8   .common     
 MODULE:                 -- start08_c.obj --
 - PROCEDURES:
-     loadByte                                  25D6       E      14       5   .text       
-     Init                                      25E4      6D     109       1   .text       
-     _Startup                                  2651       9       9       1   .text       
+     loadByte                                  25D0       E      14       5   .text       
+     Init                                      25DE      6D     109       1   .text       
+     _Startup                                  264B       9       9       1   .text       
 - VARIABLES:
      _startupData                              21E6       6       6       4   .startData  
 - LABELS:
      __SEG_END_SSTACK                           300       0       0       1               
 MODULE:                 -- ACKNOWLEDGE_LED_c.obj --
 - PROCEDURES:
-     ACKNOWLEDGE_LED_PutVal                    265A       D      13       3   .text       
+     ACKNOWLEDGE_LED_PutVal                    2654       D      13       3   .text       
 - VARIABLES:
 MODULE:                 -- ADC_c.obj --
 - PROCEDURES:
-     ADC_Interrupt                             2667      59      89       1   .text       
-     ClrSumV                                   26C0       A      10       1   .text       
-     ADC_HWEnDi                                26CA      3E      62       2   .text       
-     ADC_Measure                               2708      27      39       2   .text       
-     ADC_GetChanValue8                         272F      29      41       3   .text       
-     ADC_Init                                  2758      1A      26       1   .text       
+     ADC_Interrupt                             2661      59      89       1   .text       
+     ClrSumV                                   26BA       A      10       1   .text       
+     ADC_HWEnDi                                26C4      3E      62       2   .text       
+     ADC_Measure                               2702      27      39       2   .text       
+     ADC_GetChanValue8                         2729      29      41       3   .text       
+     ADC_Init                                  2752      1A      26       1   .text       
 - VARIABLES:
-     Table                                     3148       3       3       3   .rodata     
-     Channels                                  314B       3       3       2   .rodata     
+     Table                                     3142       3       3       3   .rodata     
+     Channels                                  3145       3       3       2   .rodata     
      EnUser                                      BA       1       1       3   .bss        
      OutFlg                                      BB       1       1       8   .bss        
      SumChan                                     BC       1       1      11   .bss        
@@ -341,7 +341,7 @@ MODULE:                 -- ADC_c.obj --
      ADC_OutV                                    F6       3       3       5   .common     
 MODULE:                 -- B_1_c.obj --
 - PROCEDURES:
-     B_1_Interrupt                             2772       8       8       1   .text       
+     B_1_Interrupt                             276C       8       8       1   .text       
 - VARIABLES:
 MODULE:                 -- Cpu_c.obj --
 - PROCEDURES:
@@ -356,22 +356,22 @@ MODULE:                 -- Cpu_c.obj --
      CCR_lock                                    FA       1       1      12   .common     
 MODULE:                 -- DISPARO_OUT_c.obj --
 - PROCEDURES:
-     DISPARO_OUT_PutVal                        277A       D      13       5   .text       
+     DISPARO_OUT_PutVal                        2774       D      13       4   .text       
 - VARIABLES:
 MODULE:                 -- Encoder_1_t_c.obj --
 - PROCEDURES:
-     HWEnDi                                    2787       D      13       1   .text       
-     Encoder_1_t_Init                          2794      10      16       1   .text       
-     Encoder_1_t_Interrupt                     27A4      17      23       1   .text       
+     HWEnDi                                    2781       D      13       1   .text       
+     Encoder_1_t_Init                          278E      10      16       1   .text       
+     Encoder_1_t_Interrupt                     279E      17      23       1   .text       
 - VARIABLES:
      EnUser                                      BE       1       1       2   .bss        
      TTicks                                      BF       2       2       3   .bss        
      TOvf                                        C1       1       1       2   .bss        
 MODULE:                 -- Encoder_2_t_c.obj --
 - PROCEDURES:
-     HWEnDi                                    27BB      2C      44       1   .text       
-     Encoder_2_t_Init                          27E7      1B      27       1   .text       
-     Encoder_2_t_Interrupt                     2802      28      40       1   .text       
+     HWEnDi                                    27B5      2C      44       1   .text       
+     Encoder_2_t_Init                          27E1      1B      27       1   .text       
+     Encoder_2_t_Interrupt                     27FC      28      40       1   .text       
 - VARIABLES:
      EnUser                                      C2       1       1       2   .bss        
      TTicks                                      C3       2       2       3   .bss        
@@ -562,36 +562,36 @@ MODULE:                 -- IO_Map_c.obj --
      _SCI2BD                                   1870       2       2       2   .abs_section_1870
 MODULE:                 -- M1_P_c.obj --
 - PROCEDURES:
-     M1_P_PutVal                               282A       D      13       9   .text       
+     M1_P_PutVal                               2824       D      13       9   .text       
 - VARIABLES:
 MODULE:                 -- M2_P_c.obj --
 - PROCEDURES:
-     M2_P_PutVal                               2837       D      13       7   .text       
+     M2_P_PutVal                               2831       D      13       7   .text       
 - VARIABLES:
 MODULE:                 -- M_1_c.obj --
 - PROCEDURES:
-     SetRatio                                  2844      89     137       2   .text       
-     M_1_Enable                                28CD       F      15       1   .text       
-     M_1_SetRatio8                             28DC       B      11       8   .text       
-     M_1_Init                                  28E7      1E      30       1   .text       
-     M_1_Interrupt                             2905       A      10       1   .text       
+     SetRatio                                  283E      89     137       2   .text       
+     M_1_Enable                                28C7       F      15       1   .text       
+     M_1_SetRatio8                             28D6       B      11       8   .text       
+     M_1_Init                                  28E1      1E      30       1   .text       
+     M_1_Interrupt                             28FF       A      10       1   .text       
 - VARIABLES:
      ActualRatio                                 C8       2       2       8   .bss        
 MODULE:                 -- M_2_c.obj --
 - PROCEDURES:
-     SetRatio                                  290F      89     137       2   .text       
-     M_2_Enable                                2998       5       5       1   .text       
-     M_2_SetRatio8                             299D       B      11      10   .text       
-     M_2_Init                                  29A8       C      12       1   .text       
+     SetRatio                                  2909      89     137       2   .text       
+     M_2_Enable                                2992       5       5       1   .text       
+     M_2_SetRatio8                             2997       B      11      10   .text       
+     M_2_Init                                  29A2       C      12       1   .text       
 - VARIABLES:
      ActualRatio                                 CA       2       2       8   .bss        
 MODULE:                 -- Serial_1_c.obj --
 - PROCEDURES:
-     Serial_1_SendChar                         29B4      57      87       7   .text       
-     Serial_1_InterruptRx                      2A0B      49      73       1   .text       
-     Serial_1_InterruptTx                      2A54      67     103       1   .text       
-     Serial_1_InterruptError                   2ABB      16      22       1   .text       
-     Serial_1_Init                             2AD1      32      50       1   .text       
+     Serial_1_SendChar                         29AE      57      87       7   .text       
+     Serial_1_InterruptRx                      2A05      49      73       1   .text       
+     Serial_1_InterruptTx                      2A4E      67     103       1   .text       
+     Serial_1_InterruptError                   2AB5      16      22       1   .text       
+     Serial_1_Init                             2ACB      32      50       1   .text       
 - VARIABLES:
      SerFlag                                     CC       1       1      11   .bss        
      EnUser                                      CD       1       1       2   .bss        
@@ -604,13 +604,13 @@ MODULE:                 -- Serial_1_c.obj --
      Serial_1_OutLen                             FC       1       1       5   .common     
 MODULE:                 -- Serial_2_c.obj --
 - PROCEDURES:
-     Serial_2_RecvChar                         2B03      65     101       1   .text       
-     Serial_2_RecvBlock                        2B68      56      86       1   .text       
-     Serial_2_ClearRxBuf                       2BBE      32      50       1   .text       
-     Serial_2_InterruptRx                      2BF0      5E      94       1   .text       
-     Serial_2_InterruptTx                      2C4E      11      17       1   .text       
-     Serial_2_InterruptError                   2C5F      10      16       1   .text       
-     Serial_2_Init                             2C6F      30      48       1   .text       
+     Serial_2_RecvChar                         2AFD      65     101       1   .text       
+     Serial_2_RecvBlock                        2B62      56      86       1   .text       
+     Serial_2_ClearRxBuf                       2BB8      32      50       1   .text       
+     Serial_2_InterruptRx                      2BEA      5E      94       1   .text       
+     Serial_2_InterruptTx                      2C48      11      17       1   .text       
+     Serial_2_InterruptError                   2C59      10      16       1   .text       
+     Serial_2_Init                             2C69      30      48       1   .text       
 - VARIABLES:
      SerFlag                                     D7       1       1       9   .bss        
      InpIndxR                                    D8       1       1       6   .bss        
@@ -619,21 +619,21 @@ MODULE:                 -- Serial_2_c.obj --
      Serial_2_InpLen                             FD       1       1       7   .common     
 MODULE:                 -- TI1_c.obj --
 - PROCEDURES:
-     HWEnDi                                    2C9F      12      18       1   .text       
-     TI1_Init                                  2CB1      11      17       1   .text       
-     TI1_Interrupt                             2CC2       D      13       1   .text       
+     HWEnDi                                    2C99      12      18       1   .text       
+     TI1_Init                                  2CAB      11      17       1   .text       
+     TI1_Interrupt                             2CBC       D      13       1   .text       
 - VARIABLES:
      EnUser                                      DD       1       1       2   .bss        
 MODULE:                 -- ULTRA_c.obj --
 - PROCEDURES:
-     SetPV                                     2CCF       D      13       1   .text       
-     ULTRA_Init                                2CDC      1C      28       1   .text       
+     SetPV                                     2CC9       D      13       1   .text       
+     ULTRA_Init                                2CD6      1C      28       1   .text       
 - VARIABLES:
      ActualRatio                                 DE       2       2       1   .bss        
 MODULE:                 -- US_c.obj --
 - PROCEDURES:
-     US_Init                                   2CF8      1C      28       1   .text       
-     US_Interrupt                              2D14       A      10       1   .text       
+     US_Init                                   2CF2      1C      28       1   .text       
+     US_Interrupt                              2D0E       A      10       1   .text       
 - VARIABLES:
      EnUser                                      E0       1       1       1   .bss        
      US_CntrState                                FE       2       2       3   .common     
@@ -643,38 +643,38 @@ MODULE:                 -- Vectors_c.obj --
      _vect                                     FFC0      40      64       0   .abs_section_ffc0
 MODULE:                 -- rtshc08.o (ansifs.lib) --
 - PROCEDURES:
-     _PUSH_ARGS_L                              2D1E      20      32       2   .text       
-     _ENTER_BINARY_L                           2D3E      16      22       2   .text       
-     _ENTER_BINARY_L_RC                        2D54      19      25       1   .text       
-     _IDIVMOD                                  2D6D      69     105       2   .text       
-     _SPLITSIGN                                2DD6      1C      28       1   .text       
-     _IDIVS_STAR08                             2DF2      1B      27       1   .text       
-     _IDIVU_STAR08                             2E0D       D      13       1   .text       
-     _POP32                                    2E1A      1A      26       1   .text       
-     _PUSH_CC                                  2E34       F      15       1   .text       
-     _POP_CC                                   2E43       F      15       1   .text       
-     F_CLRK                                    2E52       6       6       3   .text       
-     F_NANK                                    2E58       6       6       2   .text       
-     F_INFK                                    2E5E       6       6       3   .text       
-     F_TLK                                     2E64      1E      30       1   .text       
-     _UNPACK_k_to_K                            2E82      58      88       2   .text       
-     _UNPACK_j_to_L                            2EDA      58      88       2   .text       
-     _PACK_K_to_k                              2F32      63      99       2   .text       
-     F_NORMK                                   2F95      43      67       2   .text       
-     _FMUL_K_is_K_times_L                      2FD8      88     136       1   .text       
-     _FDIV_K_is_L_div_K                        3060      B5     181       1   .text       
-     _FMUL_Common                              3115       F      15       2   .text       
-     _FDIV_Common                              3124       F      15       1   .text       
-     _FMUL                                     3133       7       7       1   .text       
-     _FMUL_RC                                  313A       7       7       1   .text       
-     _FDIV                                     3141       7       7       1   .text       
+     _PUSH_ARGS_L                              2D18      20      32       2   .text       
+     _ENTER_BINARY_L                           2D38      16      22       2   .text       
+     _ENTER_BINARY_L_RC                        2D4E      19      25       1   .text       
+     _IDIVMOD                                  2D67      69     105       2   .text       
+     _SPLITSIGN                                2DD0      1C      28       1   .text       
+     _IDIVS_STAR08                             2DEC      1B      27       1   .text       
+     _IDIVU_STAR08                             2E07       D      13       1   .text       
+     _POP32                                    2E14      1A      26       1   .text       
+     _PUSH_CC                                  2E2E       F      15       1   .text       
+     _POP_CC                                   2E3D       F      15       1   .text       
+     F_CLRK                                    2E4C       6       6       3   .text       
+     F_NANK                                    2E52       6       6       2   .text       
+     F_INFK                                    2E58       6       6       3   .text       
+     F_TLK                                     2E5E      1E      30       1   .text       
+     _UNPACK_k_to_K                            2E7C      58      88       2   .text       
+     _UNPACK_j_to_L                            2ED4      58      88       2   .text       
+     _PACK_K_to_k                              2F2C      63      99       2   .text       
+     F_NORMK                                   2F8F      43      67       2   .text       
+     _FMUL_K_is_K_times_L                      2FD2      88     136       1   .text       
+     _FDIV_K_is_L_div_K                        305A      B5     181       1   .text       
+     _FMUL_Common                              310F       F      15       2   .text       
+     _FDIV_Common                              311E       F      15       1   .text       
+     _FMUL                                     312D       7       7       1   .text       
+     _FMUL_RC                                  3134       7       7       1   .text       
+     _FDIV                                     313B       7       7       1   .text       
 - VARIABLES:
 
 *********************************************************************************************
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
-  Events_c.obj                                39    391      0
+  Events_c.obj                                39    385      0
   Tanque_c.obj                                 0    248      0
   main_c.obj                                   7    351      0
   start08_c.obj                                0    132      0
@@ -1213,8 +1213,8 @@ OBJECT LIST SORTED BY ADDRESS
      tiempo_ok                                   AD       1       1       3   .data       
      VEL_MAX_1                                   AE       1       1       5   .data       
      VEL_MAX_2                                   AF       1       1       5   .data       
-     movimiento                                  B0       1       1       2   .data       
-     N_Interrupcion                              B1       1       1       4   .bss        
+     movimiento                                  B0       1       1       3   .data       
+     N_Interrupcion                              B1       1       1       3   .bss        
      DIFERENCIA                                  B2       1       1       6   .bss        
      giro                                        B3       1       1       6   .bss        
      EXPLORACION                                 B4       1       1       1   .bss        
@@ -1358,92 +1358,92 @@ OBJECT LIST SORTED BY ADDRESS
      Serial_1_OnRxChar                         2231       1       1       1   .text       
      Serial_1_OnTxChar                         2232       1       1       1   .text       
      In_IRQ                                    2233      44      68       1   .text       
-     Enconder_Int_2_OnInterrupt                2277      33      51       1   .text       
-     Enconder_Int_1_OnInterrupt                22AA       1       1       1   .text       
-     ADC_OnEnd                                 22AB       1       1       1   .text       
-     Serial_2_OnFullRxBuf                      22AC      3F      63       1   .text       
-     LED_OUT_1K                                22EB       7       7       1   .text       
-     Serial_1_OnFreeTxBuf                      22F2       1       1       1   .text       
-     Cap1_OnCapture                            22F3      8C     140       1   .text       
-     MovimientoLineal                          237F      52      82       1   .text       
-     Movimiento2Motores                        23D1      53      83       1   .text       
-     Giro                                      2424      53      83       4   .text       
-     main                                      2477     15F     351       3   .text       
-     loadByte                                  25D6       E      14       5   .text       
-     Init                                      25E4      6D     109       1   .text       
-     _Startup                                  2651       9       9       1   .text       
-     ACKNOWLEDGE_LED_PutVal                    265A       D      13       3   .text       
-     ADC_Interrupt                             2667      59      89       1   .text       
-     ClrSumV                                   26C0       A      10       1   .text       
-     ADC_HWEnDi                                26CA      3E      62       2   .text       
-     ADC_Measure                               2708      27      39       2   .text       
-     ADC_GetChanValue8                         272F      29      41       3   .text       
-     ADC_Init                                  2758      1A      26       1   .text       
-     B_1_Interrupt                             2772       8       8       1   .text       
-     DISPARO_OUT_PutVal                        277A       D      13       5   .text       
-     HWEnDi                                    2787       D      13       1   .text       
-     Encoder_1_t_Init                          2794      10      16       1   .text       
-     Encoder_1_t_Interrupt                     27A4      17      23       1   .text       
-     HWEnDi                                    27BB      2C      44       1   .text       
-     Encoder_2_t_Init                          27E7      1B      27       1   .text       
-     Encoder_2_t_Interrupt                     2802      28      40       1   .text       
-     M1_P_PutVal                               282A       D      13       9   .text       
-     M2_P_PutVal                               2837       D      13       7   .text       
-     SetRatio                                  2844      89     137       2   .text       
-     M_1_Enable                                28CD       F      15       1   .text       
-     M_1_SetRatio8                             28DC       B      11       8   .text       
-     M_1_Init                                  28E7      1E      30       1   .text       
-     M_1_Interrupt                             2905       A      10       1   .text       
-     SetRatio                                  290F      89     137       2   .text       
-     M_2_Enable                                2998       5       5       1   .text       
-     M_2_SetRatio8                             299D       B      11      10   .text       
-     M_2_Init                                  29A8       C      12       1   .text       
-     Serial_1_SendChar                         29B4      57      87       7   .text       
-     Serial_1_InterruptRx                      2A0B      49      73       1   .text       
-     Serial_1_InterruptTx                      2A54      67     103       1   .text       
-     Serial_1_InterruptError                   2ABB      16      22       1   .text       
-     Serial_1_Init                             2AD1      32      50       1   .text       
-     Serial_2_RecvChar                         2B03      65     101       1   .text       
-     Serial_2_RecvBlock                        2B68      56      86       1   .text       
-     Serial_2_ClearRxBuf                       2BBE      32      50       1   .text       
-     Serial_2_InterruptRx                      2BF0      5E      94       1   .text       
-     Serial_2_InterruptTx                      2C4E      11      17       1   .text       
-     Serial_2_InterruptError                   2C5F      10      16       1   .text       
-     Serial_2_Init                             2C6F      30      48       1   .text       
-     HWEnDi                                    2C9F      12      18       1   .text       
-     TI1_Init                                  2CB1      11      17       1   .text       
-     TI1_Interrupt                             2CC2       D      13       1   .text       
-     SetPV                                     2CCF       D      13       1   .text       
-     ULTRA_Init                                2CDC      1C      28       1   .text       
-     US_Init                                   2CF8      1C      28       1   .text       
-     US_Interrupt                              2D14       A      10       1   .text       
-     _PUSH_ARGS_L                              2D1E      20      32       2   .text       
-     _ENTER_BINARY_L                           2D3E      16      22       2   .text       
-     _ENTER_BINARY_L_RC                        2D54      19      25       1   .text       
-     _IDIVMOD                                  2D6D      69     105       2   .text       
-     _SPLITSIGN                                2DD6      1C      28       1   .text       
-     _IDIVS_STAR08                             2DF2      1B      27       1   .text       
-     _IDIVU_STAR08                             2E0D       D      13       1   .text       
-     _POP32                                    2E1A      1A      26       1   .text       
-     _PUSH_CC                                  2E34       F      15       1   .text       
-     _POP_CC                                   2E43       F      15       1   .text       
-     F_CLRK                                    2E52       6       6       3   .text       
-     F_NANK                                    2E58       6       6       2   .text       
-     F_INFK                                    2E5E       6       6       3   .text       
-     F_TLK                                     2E64      1E      30       1   .text       
-     _UNPACK_k_to_K                            2E82      58      88       2   .text       
-     _UNPACK_j_to_L                            2EDA      58      88       2   .text       
-     _PACK_K_to_k                              2F32      63      99       2   .text       
-     F_NORMK                                   2F95      43      67       2   .text       
-     _FMUL_K_is_K_times_L                      2FD8      88     136       1   .text       
-     _FDIV_K_is_L_div_K                        3060      B5     181       1   .text       
-     _FMUL_Common                              3115       F      15       2   .text       
-     _FDIV_Common                              3124       F      15       1   .text       
-     _FMUL                                     3133       7       7       1   .text       
-     _FMUL_RC                                  313A       7       7       1   .text       
-     _FDIV                                     3141       7       7       1   .text       
-     Table                                     3148       3       3       3   .rodata     
-     Channels                                  314B       3       3       2   .rodata     
+     Enconder_Int_2_OnInterrupt                2277      37      55       1   .text       
+     Enconder_Int_1_OnInterrupt                22AE       1       1       1   .text       
+     ADC_OnEnd                                 22AF       1       1       1   .text       
+     Serial_2_OnFullRxBuf                      22B0      3F      63       1   .text       
+     LED_OUT_1K                                22EF       7       7       1   .text       
+     Serial_1_OnFreeTxBuf                      22F6       1       1       1   .text       
+     Cap1_OnCapture                            22F7      82     130       1   .text       
+     MovimientoLineal                          2379      52      82       1   .text       
+     Movimiento2Motores                        23CB      53      83       1   .text       
+     Giro                                      241E      53      83       4   .text       
+     main                                      2471     15F     351       3   .text       
+     loadByte                                  25D0       E      14       5   .text       
+     Init                                      25DE      6D     109       1   .text       
+     _Startup                                  264B       9       9       1   .text       
+     ACKNOWLEDGE_LED_PutVal                    2654       D      13       3   .text       
+     ADC_Interrupt                             2661      59      89       1   .text       
+     ClrSumV                                   26BA       A      10       1   .text       
+     ADC_HWEnDi                                26C4      3E      62       2   .text       
+     ADC_Measure                               2702      27      39       2   .text       
+     ADC_GetChanValue8                         2729      29      41       3   .text       
+     ADC_Init                                  2752      1A      26       1   .text       
+     B_1_Interrupt                             276C       8       8       1   .text       
+     DISPARO_OUT_PutVal                        2774       D      13       4   .text       
+     HWEnDi                                    2781       D      13       1   .text       
+     Encoder_1_t_Init                          278E      10      16       1   .text       
+     Encoder_1_t_Interrupt                     279E      17      23       1   .text       
+     HWEnDi                                    27B5      2C      44       1   .text       
+     Encoder_2_t_Init                          27E1      1B      27       1   .text       
+     Encoder_2_t_Interrupt                     27FC      28      40       1   .text       
+     M1_P_PutVal                               2824       D      13       9   .text       
+     M2_P_PutVal                               2831       D      13       7   .text       
+     SetRatio                                  283E      89     137       2   .text       
+     M_1_Enable                                28C7       F      15       1   .text       
+     M_1_SetRatio8                             28D6       B      11       8   .text       
+     M_1_Init                                  28E1      1E      30       1   .text       
+     M_1_Interrupt                             28FF       A      10       1   .text       
+     SetRatio                                  2909      89     137       2   .text       
+     M_2_Enable                                2992       5       5       1   .text       
+     M_2_SetRatio8                             2997       B      11      10   .text       
+     M_2_Init                                  29A2       C      12       1   .text       
+     Serial_1_SendChar                         29AE      57      87       7   .text       
+     Serial_1_InterruptRx                      2A05      49      73       1   .text       
+     Serial_1_InterruptTx                      2A4E      67     103       1   .text       
+     Serial_1_InterruptError                   2AB5      16      22       1   .text       
+     Serial_1_Init                             2ACB      32      50       1   .text       
+     Serial_2_RecvChar                         2AFD      65     101       1   .text       
+     Serial_2_RecvBlock                        2B62      56      86       1   .text       
+     Serial_2_ClearRxBuf                       2BB8      32      50       1   .text       
+     Serial_2_InterruptRx                      2BEA      5E      94       1   .text       
+     Serial_2_InterruptTx                      2C48      11      17       1   .text       
+     Serial_2_InterruptError                   2C59      10      16       1   .text       
+     Serial_2_Init                             2C69      30      48       1   .text       
+     HWEnDi                                    2C99      12      18       1   .text       
+     TI1_Init                                  2CAB      11      17       1   .text       
+     TI1_Interrupt                             2CBC       D      13       1   .text       
+     SetPV                                     2CC9       D      13       1   .text       
+     ULTRA_Init                                2CD6      1C      28       1   .text       
+     US_Init                                   2CF2      1C      28       1   .text       
+     US_Interrupt                              2D0E       A      10       1   .text       
+     _PUSH_ARGS_L                              2D18      20      32       2   .text       
+     _ENTER_BINARY_L                           2D38      16      22       2   .text       
+     _ENTER_BINARY_L_RC                        2D4E      19      25       1   .text       
+     _IDIVMOD                                  2D67      69     105       2   .text       
+     _SPLITSIGN                                2DD0      1C      28       1   .text       
+     _IDIVS_STAR08                             2DEC      1B      27       1   .text       
+     _IDIVU_STAR08                             2E07       D      13       1   .text       
+     _POP32                                    2E14      1A      26       1   .text       
+     _PUSH_CC                                  2E2E       F      15       1   .text       
+     _POP_CC                                   2E3D       F      15       1   .text       
+     F_CLRK                                    2E4C       6       6       3   .text       
+     F_NANK                                    2E52       6       6       2   .text       
+     F_INFK                                    2E58       6       6       3   .text       
+     F_TLK                                     2E5E      1E      30       1   .text       
+     _UNPACK_k_to_K                            2E7C      58      88       2   .text       
+     _UNPACK_j_to_L                            2ED4      58      88       2   .text       
+     _PACK_K_to_k                              2F2C      63      99       2   .text       
+     F_NORMK                                   2F8F      43      67       2   .text       
+     _FMUL_K_is_K_times_L                      2FD2      88     136       1   .text       
+     _FDIV_K_is_L_div_K                        305A      B5     181       1   .text       
+     _FMUL_Common                              310F       F      15       2   .text       
+     _FDIV_Common                              311E       F      15       1   .text       
+     _FMUL                                     312D       7       7       1   .text       
+     _FMUL_RC                                  3134       7       7       1   .text       
+     _FDIV                                     313B       7       7       1   .text       
+     Table                                     3142       3       3       3   .rodata     
+     Channels                                  3145       3       3       2   .rodata     
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
      _vect                                     FFC0      40      64       0   .abs_section_ffc0
@@ -1526,40 +1526,40 @@ rtshc08.o (ansifs.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0x314E ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x3148 ---- SIZE       4 ---
 Filling bytes inserted
  001100A0
-------- ROM-ADDRESS: 0x3152 ---- RAM-ADDRESS: 0xA0 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x314C ---- RAM-ADDRESS: 0xA0 ---- SIZE       2 ---
 Name of initialized Object : fN
  41A0
-------- ROM-ADDRESS: 0x3154 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x314E ---- SIZE       2 ---
 Filling bytes inserted
  0000
-------- ROM-ADDRESS: 0x3156 ---- RAM-ADDRESS: 0xA4 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x3150 ---- RAM-ADDRESS: 0xA4 ---- SIZE       2 ---
 Name of initialized Object : fRADIO
  4040
-------- ROM-ADDRESS: 0x3158 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x3152 ---- SIZE       2 ---
 Filling bytes inserted
  0000
-------- ROM-ADDRESS: 0x315A ---- RAM-ADDRESS: 0xA8 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x3154 ---- RAM-ADDRESS: 0xA8 ---- SIZE       4 ---
 Name of initialized Object : PI
  40490E56
-------- ROM-ADDRESS: 0x315E ---- RAM-ADDRESS: 0xAC ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x3158 ---- RAM-ADDRESS: 0xAC ---- SIZE       1 ---
 Name of initialized Object : N
- 14
-------- ROM-ADDRESS: 0x315F ---- RAM-ADDRESS: 0xAD ---- SIZE       1 ---
+ 23
+------- ROM-ADDRESS: 0x3159 ---- RAM-ADDRESS: 0xAD ---- SIZE       1 ---
 Name of initialized Object : tiempo_ok
  01
-------- ROM-ADDRESS: 0x3160 ---- RAM-ADDRESS: 0xAE ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x315A ---- RAM-ADDRESS: 0xAE ---- SIZE       1 ---
 Name of initialized Object : VEL_MAX_1
  96
-------- ROM-ADDRESS: 0x3161 ---- RAM-ADDRESS: 0xAF ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x315B ---- RAM-ADDRESS: 0xAF ---- SIZE       1 ---
 Name of initialized Object : VEL_MAX_2
  69
-------- ROM-ADDRESS: 0x3162 ---- RAM-ADDRESS: 0xB0 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x315C ---- RAM-ADDRESS: 0xB0 ---- SIZE       1 ---
 Name of initialized Object : movimiento
  01
-------- ROM-ADDRESS: 0x3163 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x315D ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1582,15 +1582,14 @@ PE_low_level_init         USES _SCGC1 _SCGC2 _PTBDD _PTBD _PTADD _PTAD _PTCD
 M_1_OnEnd                 USES EXPLORACION giro VEL_MAX_1 VEL_MAX_2 Giro 
 In_IRQ                    USES _PTCTOG dataOut1 DIFERENCIA RECEPTOR_2 
                                 RECEPTOR_1 Serial_1_SendChar 
-Enconder_Int_2_OnInterrupt USES objeto_cerca DISPARO_OUT_PutVal N_Interrupcion 
-                                VEL_MAX_1 VEL_MAX_2 Giro N 
+Enconder_Int_2_OnInterrupt USES objeto_cerca N N_Interrupcion movimiento 
+                                VEL_MAX_1 VEL_MAX_2 Giro DISPARO_OUT_PutVal 
 Serial_2_OnFullRxBuf      USES _PTDD dataOut2 enviado Serial_2_RecvBlock 
                                 Serial_2_ClearRxBuf COMANDO_ENTRANTE 
 LED_OUT_1K                USES _PTDD 
 Cap1_OnCapture            USES _TPM3C3V US_CntrState tiempo _TPM3CNT 
                                 error_capture _IDIVU_STAR08 distancia tiempo_d 
-                                Serial_1_SendChar tiempo_ok objeto_cerca movimiento _PUSH_CC 
-                                _POP_CC 
+                                Serial_1_SendChar tiempo_ok objeto_cerca _PUSH_CC _POP_CC 
 MovimientoLineal          USES M1_P_PutVal M_1_SetRatio8 M2_P_PutVal 
                                 M_2_SetRatio8 
 Movimiento2Motores        USES M1_P_PutVal M_2_SetRatio8 M_1_SetRatio8 
@@ -1917,9 +1916,9 @@ DEPENDENCY TREE
  |  |    
  |  +- Enconder_Int_2_OnInterrupt
  |     | 
- |     +- DISPARO_OUT_PutVal   (see above)
- |     |  
  |     +- Giro                 (see above)
+ |     |  
+ |     +- DISPARO_OUT_PutVal   (see above)
  |        
  +- Serial_1_InterruptTx
  |  | 
@@ -1957,6 +1956,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 7
-Total size of all blocks to be downloaded: 4391
+Number of blocks to be downloaded: 8
+Total size of all blocks to be downloaded: 4385
 
