@@ -18,16 +18,17 @@ C_SRCS_QUOTED += \
 "../Generated_Code/Enconder_Int_2.c" \
 "../Generated_Code/IO_Map.c" \
 "../Generated_Code/LED_1.c" \
-"../Generated_Code/LED_OUT.c" \
 "../Generated_Code/LED_OUT_1K_SQ.c" \
 "../Generated_Code/M1_P.c" \
 "../Generated_Code/M2_P.c" \
 "../Generated_Code/M_1.c" \
 "../Generated_Code/M_2.c" \
 "../Generated_Code/PE_Timer.c" \
+"../Generated_Code/PPG1.c" \
 "../Generated_Code/Serial_1.c" \
 "../Generated_Code/Serial_2.c" \
 "../Generated_Code/TI1.c" \
+"../Generated_Code/ULTRA.c" \
 "../Generated_Code/US.c" \
 "../Generated_Code/Vectors.c" \
 
@@ -44,16 +45,17 @@ C_SRCS += \
 ../Generated_Code/Enconder_Int_2.c \
 ../Generated_Code/IO_Map.c \
 ../Generated_Code/LED_1.c \
-../Generated_Code/LED_OUT.c \
 ../Generated_Code/LED_OUT_1K_SQ.c \
 ../Generated_Code/M1_P.c \
 ../Generated_Code/M2_P.c \
 ../Generated_Code/M_1.c \
 ../Generated_Code/M_2.c \
 ../Generated_Code/PE_Timer.c \
+../Generated_Code/PPG1.c \
 ../Generated_Code/Serial_1.c \
 ../Generated_Code/Serial_2.c \
 ../Generated_Code/TI1.c \
+../Generated_Code/ULTRA.c \
 ../Generated_Code/US.c \
 ../Generated_Code/Vectors.c \
 
@@ -70,16 +72,17 @@ OBJS += \
 ./Generated_Code/Enconder_Int_2_c.obj \
 ./Generated_Code/IO_Map_c.obj \
 ./Generated_Code/LED_1_c.obj \
-./Generated_Code/LED_OUT_c.obj \
 ./Generated_Code/LED_OUT_1K_SQ_c.obj \
 ./Generated_Code/M1_P_c.obj \
 ./Generated_Code/M2_P_c.obj \
 ./Generated_Code/M_1_c.obj \
 ./Generated_Code/M_2_c.obj \
 ./Generated_Code/PE_Timer_c.obj \
+./Generated_Code/PPG1_c.obj \
 ./Generated_Code/Serial_1_c.obj \
 ./Generated_Code/Serial_2_c.obj \
 ./Generated_Code/TI1_c.obj \
+./Generated_Code/ULTRA_c.obj \
 ./Generated_Code/US_c.obj \
 ./Generated_Code/Vectors_c.obj \
 
@@ -96,16 +99,17 @@ OBJS_QUOTED += \
 "./Generated_Code/Enconder_Int_2_c.obj" \
 "./Generated_Code/IO_Map_c.obj" \
 "./Generated_Code/LED_1_c.obj" \
-"./Generated_Code/LED_OUT_c.obj" \
 "./Generated_Code/LED_OUT_1K_SQ_c.obj" \
 "./Generated_Code/M1_P_c.obj" \
 "./Generated_Code/M2_P_c.obj" \
 "./Generated_Code/M_1_c.obj" \
 "./Generated_Code/M_2_c.obj" \
 "./Generated_Code/PE_Timer_c.obj" \
+"./Generated_Code/PPG1_c.obj" \
 "./Generated_Code/Serial_1_c.obj" \
 "./Generated_Code/Serial_2_c.obj" \
 "./Generated_Code/TI1_c.obj" \
+"./Generated_Code/ULTRA_c.obj" \
 "./Generated_Code/US_c.obj" \
 "./Generated_Code/Vectors_c.obj" \
 
@@ -122,16 +126,17 @@ C_DEPS += \
 ./Generated_Code/Enconder_Int_2_c.d \
 ./Generated_Code/IO_Map_c.d \
 ./Generated_Code/LED_1_c.d \
-./Generated_Code/LED_OUT_c.d \
 ./Generated_Code/LED_OUT_1K_SQ_c.d \
 ./Generated_Code/M1_P_c.d \
 ./Generated_Code/M2_P_c.d \
 ./Generated_Code/M_1_c.d \
 ./Generated_Code/M_2_c.d \
 ./Generated_Code/PE_Timer_c.d \
+./Generated_Code/PPG1_c.d \
 ./Generated_Code/Serial_1_c.d \
 ./Generated_Code/Serial_2_c.d \
 ./Generated_Code/TI1_c.d \
+./Generated_Code/ULTRA_c.d \
 ./Generated_Code/US_c.d \
 ./Generated_Code/Vectors_c.d \
 
@@ -148,16 +153,17 @@ C_DEPS_QUOTED += \
 "./Generated_Code/Enconder_Int_2_c.d" \
 "./Generated_Code/IO_Map_c.d" \
 "./Generated_Code/LED_1_c.d" \
-"./Generated_Code/LED_OUT_c.d" \
 "./Generated_Code/LED_OUT_1K_SQ_c.d" \
 "./Generated_Code/M1_P_c.d" \
 "./Generated_Code/M2_P_c.d" \
 "./Generated_Code/M_1_c.d" \
 "./Generated_Code/M_2_c.d" \
 "./Generated_Code/PE_Timer_c.d" \
+"./Generated_Code/PPG1_c.d" \
 "./Generated_Code/Serial_1_c.d" \
 "./Generated_Code/Serial_2_c.d" \
 "./Generated_Code/TI1_c.d" \
+"./Generated_Code/ULTRA_c.d" \
 "./Generated_Code/US_c.d" \
 "./Generated_Code/Vectors_c.d" \
 
@@ -174,16 +180,17 @@ OBJS_OS_FORMAT += \
 ./Generated_Code/Enconder_Int_2_c.obj \
 ./Generated_Code/IO_Map_c.obj \
 ./Generated_Code/LED_1_c.obj \
-./Generated_Code/LED_OUT_c.obj \
 ./Generated_Code/LED_OUT_1K_SQ_c.obj \
 ./Generated_Code/M1_P_c.obj \
 ./Generated_Code/M2_P_c.obj \
 ./Generated_Code/M_1_c.obj \
 ./Generated_Code/M_2_c.obj \
 ./Generated_Code/PE_Timer_c.obj \
+./Generated_Code/PPG1_c.obj \
 ./Generated_Code/Serial_1_c.obj \
 ./Generated_Code/Serial_2_c.obj \
 ./Generated_Code/TI1_c.obj \
+./Generated_Code/ULTRA_c.obj \
 ./Generated_Code/US_c.obj \
 ./Generated_Code/Vectors_c.obj \
 
@@ -290,17 +297,9 @@ Generated_Code/LED_1_c.obj: ../Generated_Code/LED_1.c
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Generated_Code/LED_OUT_c.obj: ../Generated_Code/LED_OUT.c
-	@echo 'Building file: $<'
-	@echo 'Executing target #17 $<'
-	@echo 'Invoking: HCS08 Compiler'
-	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/LED_OUT.args" -ObjN="Generated_Code/LED_OUT_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
-	@echo 'Finished building: $<'
-	@echo ' '
-
 Generated_Code/LED_OUT_1K_SQ_c.obj: ../Generated_Code/LED_OUT_1K_SQ.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #18 $<'
+	@echo 'Executing target #17 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/LED_OUT_1K_SQ.args" -ObjN="Generated_Code/LED_OUT_1K_SQ_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -308,7 +307,7 @@ Generated_Code/LED_OUT_1K_SQ_c.obj: ../Generated_Code/LED_OUT_1K_SQ.c
 
 Generated_Code/M1_P_c.obj: ../Generated_Code/M1_P.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #19 $<'
+	@echo 'Executing target #18 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/M1_P.args" -ObjN="Generated_Code/M1_P_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -316,7 +315,7 @@ Generated_Code/M1_P_c.obj: ../Generated_Code/M1_P.c
 
 Generated_Code/M2_P_c.obj: ../Generated_Code/M2_P.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #20 $<'
+	@echo 'Executing target #19 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/M2_P.args" -ObjN="Generated_Code/M2_P_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -324,7 +323,7 @@ Generated_Code/M2_P_c.obj: ../Generated_Code/M2_P.c
 
 Generated_Code/M_1_c.obj: ../Generated_Code/M_1.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #21 $<'
+	@echo 'Executing target #20 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/M_1.args" -ObjN="Generated_Code/M_1_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -332,7 +331,7 @@ Generated_Code/M_1_c.obj: ../Generated_Code/M_1.c
 
 Generated_Code/M_2_c.obj: ../Generated_Code/M_2.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #22 $<'
+	@echo 'Executing target #21 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/M_2.args" -ObjN="Generated_Code/M_2_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -340,9 +339,17 @@ Generated_Code/M_2_c.obj: ../Generated_Code/M_2.c
 
 Generated_Code/PE_Timer_c.obj: ../Generated_Code/PE_Timer.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #23 $<'
+	@echo 'Executing target #22 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/PE_Timer.args" -ObjN="Generated_Code/PE_Timer_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Generated_Code/PPG1_c.obj: ../Generated_Code/PPG1.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #23 $<'
+	@echo 'Invoking: HCS08 Compiler'
+	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/PPG1.args" -ObjN="Generated_Code/PPG1_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -370,9 +377,17 @@ Generated_Code/TI1_c.obj: ../Generated_Code/TI1.c
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Generated_Code/US_c.obj: ../Generated_Code/US.c
+Generated_Code/ULTRA_c.obj: ../Generated_Code/ULTRA.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #27 $<'
+	@echo 'Invoking: HCS08 Compiler'
+	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/ULTRA.args" -ObjN="Generated_Code/ULTRA_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Generated_Code/US_c.obj: ../Generated_Code/US.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #28 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/US.args" -ObjN="Generated_Code/US_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -380,7 +395,7 @@ Generated_Code/US_c.obj: ../Generated_Code/US.c
 
 Generated_Code/Vectors_c.obj: ../Generated_Code/Vectors.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #28 $<'
+	@echo 'Executing target #29 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/Vectors.args" -ObjN="Generated_Code/Vectors_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'

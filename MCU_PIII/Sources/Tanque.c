@@ -139,9 +139,9 @@ void MovimientoLineal(byte velocidad,char direccion)
 	}
 	if(direccion == 's')
 	{
-	M1_P_PutVal(TRUE);
+	M1_P_PutVal(FALSE);
 	(void)M_1_SetRatio8(0xFF-0x00);
-	M2_P_PutVal(TRUE);
+	M2_P_PutVal(FALSE);
 	(void)M_2_SetRatio8(0xFF-0x00);
 	}
 }
@@ -190,5 +190,34 @@ void MovimientoDual(byte velocidad1,byte velocidad2,bool STOP)
 		(void)M_1_SetRatio8(0xFF-velocidad1);
 		M2_P_PutVal(FALSE);
 		(void)M_2_SetRatio8(velocidad2);
+	}
+}
+
+
+
+
+void Giro(byte velocidad1,byte velocidad2,char direccion)
+{
+	if(direccion == 'd')
+	{
+	M1_P_PutVal(TRUE);
+    (void)M_1_SetRatio8(velocidad1);
+    M2_P_PutVal(FALSE);
+    (void)M_2_SetRatio8(0xFF-velocidad2);
+	}
+	
+	if(direccion == 'i')
+	{
+	M1_P_PutVal(FALSE);
+	(void)M_1_SetRatio8(0xFF-velocidad1);
+	M2_P_PutVal(TRUE);
+	(void)M_2_SetRatio8(velocidad2);
+	}
+	if(direccion == 's')
+	{
+	M1_P_PutVal(TRUE);
+	(void)M_1_SetRatio8(0xFF-0x00);
+	M2_P_PutVal(TRUE);
+	(void)M_2_SetRatio8(0xFF-0x00);
 	}
 }

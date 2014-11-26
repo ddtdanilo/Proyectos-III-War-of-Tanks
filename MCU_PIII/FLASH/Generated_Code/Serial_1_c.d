@@ -11,7 +11,6 @@ Generated_Code/Serial_1_c.obj: \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Sources/Events.h \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/M_1.h \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/M_2.h \
-	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/LED_OUT.h \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/Serial_2.h \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/LED_1.h \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/ADC.h \
@@ -27,5 +26,6 @@ Generated_Code/Serial_1_c.obj: \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/TI1.h \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/LED_OUT_1K_SQ.h \
 	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/ACKNOWLEDGE_LED.h \
-	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/DISPARO_OUT.h 
+	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/DISPARO_OUT.h \
+	D:/Copy/Workspace_CodeWarrior2/MCU_PIII/Generated_Code/ULTRA.h 
 

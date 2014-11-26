@@ -57,11 +57,18 @@ float fVEL_2;
 byte N = 20; //Numero de rendijas
 byte N_Interrupcion = 0x00;
 byte DIFERENCIA = 0x00;
+byte error_capture;
+DATA tiempo_d;
+bool tiempo_ok = TRUE;
+
+//extern unsigned int tiempo; //Tiempo de ultrasonido
+//extern unsigned int distancia;
 
 //fData = envio;
 DATA envio;
 
 bool test = TRUE;
+byte giro = 0x00;
 
 
 //SERIAL
@@ -92,6 +99,26 @@ byte COMANDO_ENTRANTE;
 void M_1_OnEnd(void)
 {
   /* Write your code here ... */
+	
+	if(EXPLORACION)
+	{
+		if(giro == 0x00)
+		{
+			Giro(VEL_MAX_1,VEL_MAX_2,'i');
+			giro++;
+		}
+		if(giro == 0x01)
+		{
+			Giro(VEL_MAX_1,VEL_MAX_2,'i');
+			giro++;
+		}
+		if(giro == 0x02)
+		{
+			Giro(VEL_MAX_1,VEL_MAX_2,'i');
+			giro = 0x00;
+		}
+		
+	}
 }
 
 
@@ -282,63 +309,22 @@ void In_IRQ(void)
 void Enconder_Int_2_OnInterrupt(void)
 {
 		
-		dataOut1[0] = 0x00;
-		dataOut1[1] = 0x00;
-		/*	
-		if(test){
-		M1_P_PutVal(TRUE);
-	    (void)M_1_SetRatio8(0xFF);
-		}else{
-			M1_P_PutVal(FALSE);
-		(void)M_1_SetRatio8(0xFF);
-		}
-		test = !test;
 		
-		*/
-		/*
-	
-		(void)Serial_1_SendBlock(&dataOut1,SIZE_DATA_S1,&enviado);
-		
-		(void)M_1_SetRatio8(DUTY_CYCLE);
-	    (void)M_2_SetRatio8(DUTY_CYCLE);
-		if(PULSO1_START){
-			  (void)Encoder_1_t_Reset();
-			  PULSO1_START = FALSE;
-		  }
-		  else{
-			  (void)Encoder_1_t_GetTimeReal(&fTIEMPO_1);
-			  fVEL_1 = fPERIMETRO/fTIEMPO_1;
-			  PULSO1_START = TRUE;
-		  }
-		*/
-		//DUTY_CYCLE = DUTY_CYCLE + 10;
-		
-		
-		if(N_Interrupcion == 0)
-		{ 
-			(void)Encoder_2_t_Reset();
-			 N_Interrupcion++;
-		}
-		else{
-			
-			if(N_Interrupcion == N){
-				(void)Encoder_2_t_GetTimeMS(&wTIEMPO_2);
-				fTIEMPO_2 = (float)wTIEMPO_2;
-				N_Interrupcion = 0;
-				envio.Val_Word = wTIEMPO_2;
-				//(void)Serial_1_SendBlock(&envio,2,&enviado);
-				LED_1_NegVal();
-				
-				
-			}
-			 else{
-				 //LED_1_NegVal();
-				 N_Interrupcion++;
-			 } 
-		}
-		//LED_1_NegVal();
-		
-			
+		if(objeto_cerca)
+		{
+			DISPARO_OUT_PutVal(TRUE);
+					if(N_Interrupcion == 0)
+					{ 
+						 Giro(VEL_MAX_1,VEL_MAX_2,'d');
+						 N_Interrupcion++;
+					}
+					else{
+							if(N_Interrupcion == N)
+							{ 
+								N_Interrupcion = 0x00;
+							} 
+						}
+		}else DISPARO_OUT_PutVal(FALSE);
 		
 	
 		
@@ -401,7 +387,7 @@ void ADC_OnEnd(void)
 //Cuando llegan 3 bytes, toma el segundo dato.
 void  Serial_2_OnFullRxBuf(void)
 {
-	
+	DISPARO_OUT_NegVal();
 	//Obtengo la data
 	(void)Serial_2_RecvBlock(&dataOut2,SIZE_DATA_S2,&enviado);
 	(void)Serial_2_ClearRxBuf();
@@ -417,10 +403,11 @@ void  Serial_2_OnFullRxBuf(void)
 		//ACKNOWLEDGE Tanque 1
 		case 0x00:
 			//Cambia el estado del led.
-			ACKNOWLEDGE_LED_NegVal();
+			
 			break;
 		//Fuera Pista Derecha Tanque 1
 		case 0x01:
+			DISPARO_OUT_NegVal();
 			break;
 		//Fuera Pista Izquierda Tanque 1
 		case 0x02:
@@ -476,6 +463,58 @@ void LED_OUT_1K(void)
 void  Serial_1_OnFreeTxBuf(void)
 {
   /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  Cap1_OnCapture (module Events)
+**
+**     Component   :  US [Capture]
+**     Description :
+**         This event is called on capturing of Timer/Counter actual
+**         value (only when the component is enabled - <Enable> and the
+**         events are enabled - <EnableEvent>.This event is available
+**         only if a <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void Cap1_OnCapture(void)
+{
+  /* Write your code here ... */
+	error_capture = US_GetCaptureValue(&tiempo); //Devuelve error si lo hay
+	//En tiempo se guarda cuanto tarda
+	error_capture = US_Reset();
+	distancia = (tiempo/58); //Para la distancia, tomando la velocidad del sonido en ambiente
+	//AS1_SendChar(distancia); 
+	tiempo_d.Val_Word = tiempo;
+	if(tiempo < 0x0200)
+	{
+		(void)Serial_1_SendChar(tiempo_d.Val_Byte[0]);
+		(void)Serial_1_SendChar(tiempo_d.Val_Byte[1]);
+		tiempo_ok = !tiempo_ok;
+		objeto_cerca = TRUE;
+		
+		if(tiempo <= 0x0C)// 10 cm
+		{
+			objeto_cerca = TRUE;
+			movimiento = FALSE;
+			
+		}
+		else 
+		{
+			objeto_cerca = FALSE;
+			movimiento = TRUE;
+		}
+		
+	}
+	else tiempo_ok = !tiempo_ok; 
+	
+		
+		
+	
+		
 }
 
 /* END Events */

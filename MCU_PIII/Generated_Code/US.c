@@ -6,7 +6,7 @@
 **     Component   : Capture
 **     Version     : Component 02.223, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-10-13, 16:44, # CodeGen: 40
+**     Date/Time   : 2014-11-25, 16:25, # CodeGen: 109
 **     Abstract    :
 **         This component "Capture" simply implements the capture function
 **         of timer. The counter counts the same way as in free run mode. On
@@ -36,7 +36,7 @@
 **              Events                 : Enabled
 **
 **         Timer registers
-**              Capture                : TPM3C5V   [$0075]
+**              Capture                : TPM3C3V   [$006F]
 **              Counter                : TPM3CNT   [$0061]
 **              Mode                   : TPM3SC    [$0060]
 **              Run                    : TPM3SC    [$0060]
@@ -46,14 +46,15 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       77            |  PTC5_TPM3CH5_ACMP2O
+**                       24            |  PTC3_TPM3CH3
 **             ----------------------------------------------------
 **
 **         Port name                   : PTC
-**         Bit number (in port)        : 5
-**         Bit mask of the port        : $0020
+**         Bit number (in port)        : 3
+**         Bit mask of the port        : $0008
 **
 **         Signal edge/level           : both
+**         Priority                    : 
 **         Pull option                 : off
 **
 **     Contents    :
@@ -61,7 +62,6 @@
 **         Disable         - byte US_Disable(void);
 **         Reset           - byte US_Reset(void);
 **         GetCaptureValue - byte US_GetCaptureValue(US_TCapturedValue *Value);
-**         GetStatus       - bool US_GetStatus(void);
 **         GetPinValue     - bool US_GetPinValue(void);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
@@ -112,6 +112,7 @@
 
 /* MODULE US. */
 
+#include "Events.h"
 #include "US.h"
 
 
@@ -138,8 +139,8 @@ byte US_Enable(void)
   US_CntrState = TPM3CNT;              /* Load content of counter register to variable CntrState */
   if (!EnUser) {                       /* Is the device disabled by user? */
     EnUser = TRUE;                     /* If yes then set the flag "device enabled" */
-    /* TPM3C5SC: CH5F=0,CH5IE=0,MS5B=0,MS5A=0,ELS5B=1,ELS5A=1,??=0,??=0 */
-    setReg8(TPM3C5SC, 0x0CU);          /* Enable capture function */ 
+    /* TPM3C3SC: CH3F=0,CH3IE=1,MS3B=0,MS3A=0,ELS3B=1,ELS3A=1,??=0,??=0 */
+    setReg8(TPM3C3SC, 0x4CU);          /* Enable both interrupt and capture function */ 
   }
   return ERR_OK;                       /* OK */
 }
@@ -162,8 +163,8 @@ byte US_Disable(void)
 {
   if (EnUser) {                        /* Is the device enabled by user? */
     EnUser = FALSE;                    /* If yes then set the flag "device disabled" */
-    /* TPM3C5SC: CH5F=0,CH5IE=0,MS5B=0,MS5A=0,ELS5B=0,ELS5A=0,??=0,??=0 */
-    setReg8(TPM3C5SC, 0x00U);          /* Disable capture function */ 
+    /* TPM3C3SC: CH3F=0,CH3IE=0,MS3B=0,MS3A=0,ELS3B=0,ELS3A=0,??=0,??=0 */
+    setReg8(TPM3C3SC, 0x00U);          /* Disable capture function */ 
   }
   return ERR_OK;                       /* OK */
 }
@@ -214,31 +215,6 @@ byte US_GetCaptureValue(US_TCapturedValue *Value)
 
 /*
 ** ===================================================================
-**     Method      :  US_GetStatus (component Capture)
-**     Description :
-**         The method returns status of input capture event and resets
-**         it if new capture event has occurred.
-**         This method is available only if the <Interrupt
-**         service/event> property is disabled.
-**     Parameters  : None
-**     Returns     :
-**         ---             - 
-**                           <true> - new capture event occurred, value
-**                           was captured
-**                           <false> - no capture event occurred
-** ===================================================================
-*/
-bool US_GetStatus(void)
-{
-  if (getRegBit(TPM3C5SC, CH5F)) {     /* Does the new capture event occured? */
-    clrReg8Bit(TPM3C5SC, CH5F);        /* If yes then reset it */
-    return TRUE;
-  }
-  return FALSE;
-}
-
-/*
-** ===================================================================
 **     Method      :  US_GetPinValue (component Capture)
 **     Description :
 **         The method reads the Capture pin value. The method is
@@ -276,15 +252,35 @@ void US_Init(void)
   setReg16(TPM3MOD, 0x00U);            /* Disable modulo register */ 
   /* TPM3CNTH: BIT15=0,BIT14=0,BIT13=0,BIT12=0,BIT11=0,BIT10=0,BIT9=0,BIT8=0 */
   setReg8(TPM3CNTH, 0x00U);            /* Reset counter */ 
-  /* TPM3C5V: BIT15=0,BIT14=0,BIT13=0,BIT12=0,BIT11=0,BIT10=0,BIT9=0,BIT8=0,BIT7=0,BIT6=0,BIT5=0,BIT4=0,BIT3=0,BIT2=0,BIT1=0,BIT0=0 */
-  setReg16(TPM3C5V, 0x00U);            /* Clear capture register */ 
+  /* TPM3C3V: BIT15=0,BIT14=0,BIT13=0,BIT12=0,BIT11=0,BIT10=0,BIT9=0,BIT8=0,BIT7=0,BIT6=0,BIT5=0,BIT4=0,BIT3=0,BIT2=0,BIT1=0,BIT0=0 */
+  setReg16(TPM3C3V, 0x00U);            /* Clear capture register */ 
   US_CntrState = 0x00U;                /* Clear variable */
   EnUser = TRUE;                       /* Enable device */
   /* TPM3SC: PS2=0,PS1=0,PS0=0 */
   clrReg8Bits(TPM3SC, 0x07U);          /* Set prescaler register */ 
-  /* TPM3C5SC: CH5F=0,CH5IE=0,MS5B=0,MS5A=0,ELS5B=1,ELS5A=1,??=0,??=0 */
-  setReg8(TPM3C5SC, 0x0CU);            /* Enable capture function */ 
+  /* TPM3C3SC: CH3F=0,CH3IE=1,MS3B=0,MS3A=0,ELS3B=1,ELS3A=1,??=0,??=0 */
+  setReg8(TPM3C3SC, 0x4CU);            /* Enable both interrupt and capture function */ 
 }
+
+
+/*
+** ===================================================================
+**     Method      :  Interrupt (component Capture)
+**
+**     Description :
+**         The method services the interrupt of the selected peripheral(s)
+**         and eventually invokes event(s) of the component.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+ISR(US_Interrupt)
+{
+  (void)TPM3C3SC;                      /* Dummy read to reset interrupt request flag */
+  /* TPM3C3SC: CH3F=0 */
+  clrReg8Bits(TPM3C3SC, 0x80U);        /* Reset interrupt request flag */ 
+  Cap1_OnCapture();                    /* Invoke user event */
+}
+
 
 
 /* END US. */

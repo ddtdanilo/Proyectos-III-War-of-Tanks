@@ -6,7 +6,7 @@
 **     Component   : AsynchroSerial
 **     Version     : Component 02.611, Driver 01.33, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-11-17, 12:30, # CodeGen: 68
+**     Date/Time   : 2014-11-25, 13:24, # CodeGen: 95
 **     Abstract    :
 **         This component "AsynchroSerial" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -18,7 +18,7 @@
 **         Serial channel              : SCI2
 **
 **         Protocol
-**             Init baud rate          : 300baud
+**             Init baud rate          : 1200baud
 **             Width                   : 8 bits
 **             Stop bits               : 1
 **             Parity                  : none
@@ -444,8 +444,8 @@ void Serial_2_Init(void)
   setReg8(SCI2C2, 0x00U);              /* Disable all interrupts */ 
   /* SCI2S2: LBKDIF=0,RXEDGIF=0,??=0,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
   setReg8(SCI2S2, 0x00U);               
-  SCI2BDH = 0x14U;                     /* Set high divisor register (enable device) */
-  SCI2BDL = 0x7BU;                     /* Set low divisor register (enable device) */
+  SCI2BDH = 0x05U;                     /* Set high divisor register (enable device) */
+  SCI2BDL = 0x1FU;                     /* Set low divisor register (enable device) */
       /* SCI2C3: ORIE=1,NEIE=1,FEIE=1,PEIE=1 */
   SCI2C3 |= 0x0FU;                     /* Enable error interrupts */
   SCI2C2 |= (SCI2C2_TE_MASK | SCI2C2_RE_MASK | SCI2C2_RIE_MASK); /*  Enable transmitter, Enable receiver, Enable receiver interrupt */

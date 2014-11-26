@@ -37,7 +37,6 @@
 #include "PE_Timer.h"
 #include "M_1.h"
 #include "M_2.h"
-#include "LED_OUT.h"
 #include "Serial_1.h"
 #include "Serial_2.h"
 #include "LED_1.h"
@@ -55,6 +54,7 @@
 #include "LED_OUT_1K_SQ.h"
 #include "ACKNOWLEDGE_LED.h"
 #include "DISPARO_OUT.h"
+#include "ULTRA.h"
 
 
 void M_1_OnEnd(void);
@@ -252,6 +252,22 @@ void Serial_1_OnFreeTxBuf(void);
 **     Description :
 **         This event is called after the last character in output
 **         buffer is transmitted.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void Cap1_OnCapture(void);
+/*
+** ===================================================================
+**     Event       :  Cap1_OnCapture (module Events)
+**
+**     Component   :  US [Capture]
+**     Description :
+**         This event is called on capturing of Timer/Counter actual
+**         value (only when the component is enabled - <Enable> and the
+**         events are enabled - <EnableEvent>.This event is available
+**         only if a <interrupt service/event> is enabled.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================

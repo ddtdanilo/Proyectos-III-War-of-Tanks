@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-11-17, 13:38, # CodeGen: 69
+**     Date/Time   : 2014-11-25, 16:49, # CodeGen: 110
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -68,7 +68,6 @@
 
 #include "M_1.h"
 #include "M_2.h"
-#include "LED_OUT.h"
 #include "Serial_1.h"
 #include "Serial_2.h"
 #include "LED_1.h"
@@ -86,6 +85,7 @@
 #include "LED_OUT_1K_SQ.h"
 #include "ACKNOWLEDGE_LED.h"
 #include "DISPARO_OUT.h"
+#include "ULTRA.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -245,16 +245,16 @@ void PE_low_level_init(void)
   clrSetReg8Bits(PTBDD, 0x01U, 0x22U);  
   /* PTBD: PTBD5=0,PTBD1=1 */
   clrSetReg8Bits(PTBD, 0x20U, 0x02U);   
-  /* PTADD: PTADD6=1,PTADD5=0,PTADD2=0,PTADD1=1 */
-  clrSetReg8Bits(PTADD, 0x24U, 0x42U);  
-  /* PTAD: PTAD6=0,PTAD1=0 */
-  clrReg8Bits(PTAD, 0x42U);             
-  /* PTCD: PTCD7=1,PTCD2=0,PTCD0=0 */
-  clrSetReg8Bits(PTCD, 0x05U, 0x80U);   
-  /* PTCDD: PTCDD7=1,PTCDD6=0,PTCDD5=0,PTCDD2=1,PTCDD0=1 */
-  clrSetReg8Bits(PTCDD, 0x60U, 0x85U);  
-  /* PTCPE: PTCPE5=0,PTCPE2=0,PTCPE0=0 */
-  clrReg8Bits(PTCPE, 0x25U);            
+  /* PTADD: PTADD7=1,PTADD6=1,PTADD5=0,PTADD2=0 */
+  clrSetReg8Bits(PTADD, 0x24U, 0xC0U);  
+  /* PTAD: PTAD7=0,PTAD6=0 */
+  clrReg8Bits(PTAD, 0xC0U);             
+  /* PTCD: PTCD7=1,PTCD0=0 */
+  clrSetReg8Bits(PTCD, 0x01U, 0x80U);   
+  /* PTCDD: PTCDD7=1,PTCDD6=0,PTCDD3=0,PTCDD0=1 */
+  clrSetReg8Bits(PTCDD, 0x48U, 0x81U);  
+  /* PTCPE: PTCPE3=0,PTCPE0=0 */
+  clrReg8Bits(PTCPE, 0x09U);            
   /* APCTL1: ADPC0=1 */
   setReg8Bits(APCTL1, 0x01U);           
   /* APCTL2: ADPC11=1,ADPC10=1 */
@@ -267,6 +267,12 @@ void PE_low_level_init(void)
   clrSetReg8Bits(PTDDD, 0x10U, 0x43U);  
   /* PTDPE: PTDPE6=0,PTDPE4=0,PTDPE1=0,PTDPE0=0 */
   clrReg8Bits(PTDPE, 0x53U);            
+  /* PTED: PTED6=0 */
+  clrReg8Bits(PTED, 0x40U);             
+  /* PTEPE: PTEPE6=0 */
+  clrReg8Bits(PTEPE, 0x40U);            
+  /* PTEDD: PTEDD6=1 */
+  setReg8Bits(PTEDD, 0x40U);            
   /* PTHD: PTHD7=0,PTHD6=0 */
   clrReg8Bits(PTHD, 0xC0U);             
   /* PTHPE: PTHPE7=0,PTHPE6=0 */
@@ -314,8 +320,6 @@ void PE_low_level_init(void)
   M_1_Init();
   /* ### Programable pulse generation "M_2" init code ... */
   M_2_Init();
-  /* ### Programable pulse generation "LED_OUT" init code ... */
-  LED_OUT_Init();
   /* ### Asynchro serial "Serial_1" init code ... */
   Serial_1_Init();
   /* ### Asynchro serial "Serial_2" init code ... */
@@ -358,6 +362,8 @@ void PE_low_level_init(void)
   /* ### BitIO "LED_OUT_1K_SQ" init code ... */
   /* ### BitIO "ACKNOWLEDGE_LED" init code ... */
   /* ### BitIO "DISPARO_OUT" init code ... */
+  /* ### Programable pulse generation "ULTRA" init code ... */
+  ULTRA_Init();
   /* Common peripheral initialization - ENABLE */
   /* TPM1SC: TOIE=1,CLKSB=0,CLKSA=1,PS1=1,PS0=1 */
   clrSetReg8Bits(TPM1SC, 0x10U, 0x4BU); 

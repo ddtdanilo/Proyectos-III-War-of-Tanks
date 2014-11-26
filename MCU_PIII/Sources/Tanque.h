@@ -27,6 +27,13 @@ extern byte RECEPTOR_2;
 extern byte VEL_MAX_1;
 extern byte VEL_MAX_2;
 extern byte DIFERENCIA;
+extern bool EXPLORACION;
+extern byte error_capture;
+extern unsigned int tiempo; //Tiempo de ultrasonido
+extern int distancia;
+extern bool objeto_cerca;
+extern bool movimiento;
+
 
 
 typedef union{
@@ -78,5 +85,7 @@ The map() function uses integer math so will not generate fractions, when the ma
 long map(long x, long in_min, long in_max, long out_min, long out_max);
 
 float MapF(float x, float in_min, float in_max, float out_min, float out_max);
+
+void Giro(byte velocidad1,byte velocidad2,char direccion);
 
 #endif /* TANQUE_H_ */

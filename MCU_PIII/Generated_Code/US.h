@@ -6,7 +6,7 @@
 **     Component   : Capture
 **     Version     : Component 02.223, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-10-13, 16:44, # CodeGen: 40
+**     Date/Time   : 2014-11-25, 16:25, # CodeGen: 109
 **     Abstract    :
 **         This component "Capture" simply implements the capture function
 **         of timer. The counter counts the same way as in free run mode. On
@@ -36,7 +36,7 @@
 **              Events                 : Enabled
 **
 **         Timer registers
-**              Capture                : TPM3C5V   [$0075]
+**              Capture                : TPM3C3V   [$006F]
 **              Counter                : TPM3CNT   [$0061]
 **              Mode                   : TPM3SC    [$0060]
 **              Run                    : TPM3SC    [$0060]
@@ -46,14 +46,15 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       77            |  PTC5_TPM3CH5_ACMP2O
+**                       24            |  PTC3_TPM3CH3
 **             ----------------------------------------------------
 **
 **         Port name                   : PTC
-**         Bit number (in port)        : 5
-**         Bit mask of the port        : $0020
+**         Bit number (in port)        : 3
+**         Bit mask of the port        : $0008
 **
 **         Signal edge/level           : both
+**         Priority                    : 
 **         Pull option                 : off
 **
 **     Contents    :
@@ -61,7 +62,6 @@
 **         Disable         - byte US_Disable(void);
 **         Reset           - byte US_Reset(void);
 **         GetCaptureValue - byte US_GetCaptureValue(US_TCapturedValue *Value);
-**         GetStatus       - bool US_GetStatus(void);
 **         GetPinValue     - bool US_GetPinValue(void);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
@@ -192,7 +192,7 @@ byte US_Disable(void);
 
 #define US_GetCaptureValue(Value) \
   /*lint -save  -e926 -e927 -e928 -e929 Disable MISRA rule (11.4) checking. */\
-  (((*(US_TCapturedValue*)(Value) = TPM3C5V), \
+  (((*(US_TCapturedValue*)(Value) = TPM3C3V), \
   (*(US_TCapturedValue*)(Value) -= US_CntrState)), \
   ERR_OK) \
   /*lint -restore Enable MISRA rule (11.4) checking. */
@@ -215,25 +215,7 @@ byte US_Disable(void);
 ** ===================================================================
 */
 
-bool US_GetStatus(void);
-/*
-** ===================================================================
-**     Method      :  US_GetStatus (component Capture)
-**     Description :
-**         The method returns status of input capture event and resets
-**         it if new capture event has occurred.
-**         This method is available only if the <Interrupt
-**         service/event> property is disabled.
-**     Parameters  : None
-**     Returns     :
-**         ---             - 
-**                           <true> - new capture event occurred, value
-**                           was captured
-**                           <false> - no capture event occurred
-** ===================================================================
-*/
-
-#define US_GetPinValue() ((PTCD & 0x20U) ? TRUE : FALSE)
+#define US_GetPinValue() ((PTCD & 0x08U) ? TRUE : FALSE)
 /*
 ** ===================================================================
 **     Method      :  US_GetPinValue (component Capture)
@@ -258,6 +240,18 @@ void US_Init(void);
 **         Initializes the associated peripheral(s) and the component 
 **         internal variables. The method is called automatically as a 
 **         part of the application initialization code.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+
+__interrupt void US_Interrupt(void);
+/*
+** ===================================================================
+**     Method      :  Interrupt (component Capture)
+**
+**     Description :
+**         The method services the interrupt of the selected peripheral(s)
+**         and eventually invokes event(s) of the component.
 **         This method is internal. It is used by Processor Expert only.
 ** ===================================================================
 */
