@@ -58,50 +58,50 @@ void handleGame1() {
   //Robot Team 1 Should move to the left to get back in
   if((closestX-SpriteSpace>RightX)||(closestX2-SpriteSpace>RightX)){
     println("Robot Equipo 1 Se sale por la derecha del campo");
-    //myPort.write(0x00)
-    //myPort.write(0x01)
+    myPort.write(0x00)
+    myPort.write(0x01)
   }
   //Robot Team 2 Should move to the left to get back in
   if((closestX3-SpriteSpace>RightX)||(closestX4-SpriteSpace>RightX)){
     println("Robot Equipo 2 Se sale por la derecha del campo");
-    //myPort.write(0x06)
-    //myPort.write(0x07)
+    myPort.write(0x06)
+    myPort.write(0x07)
   }
   //Robot Team 1 Should move to the right to get back in
   if((closestX+SpriteSpace<LeftX)||(closestX2+SpriteSpace<LeftX)){
     println("Robot Equipo 1 Se sale por la izquierda del campo");
-    //myPort.write(0x00)
-    //myPort.write(0x02)
+    myPort.write(0x00)
+    myPort.write(0x02)
   }
   //Robot Team 2 Should move to the right to get back in
   if((closestX3+SpriteSpace<LeftX)||(closestX4+SpriteSpace<LeftX)){
     println("Robot Equipo 2 Se sale por la izquierda del campo");
-    //myPort.write(0x06)
-    //myPort.write(0x08)
+    myPort.write(0x06)
+    myPort.write(0x08)
   }
   //Robot Team 1 Should move up to get back in
   if((closestY+SpriteSpace>DownY)||(closestY2+SpriteSpace>DownY)){
     println("Robot Equipo 1 Se sale por abajo del campo");
-    //myPort.write(0x00)
-    //myPort.write(0x03)
+    myPort.write(0x00)
+    myPort.write(0x03)
   }
   //Robot Team 2 Should move up to get back in
   if((closestY3+SpriteSpace>DownY)||(closestY4+SpriteSpace>DownY)){
     println("Robot Equipo 2 Se sale por abajo del campo");
-    //myPort.write(0x06)
-    //myPort.write(0x09)
+    myPort.write(0x06)
+    myPort.write(0x09)
   }
   //Robot Team 1 Should move down to get back in
   if((closestY-SpriteSpace<UpY)||(closestY2-SpriteSpace<UpY)){
     println("Robot Equipo 1 Se sale por arriba del campo");
-    //myPort.write(0x00)
-    //myPort.write(0x04)
+    myPort.write(0x00)
+    myPort.write(0x04)
   }
   //Robot Team 2 Should move down to get back in
   if((closestY3-SpriteSpace<UpY)||(closestY4-SpriteSpace<UpY)){
     println("Robot Equipo 2 Se sale por arriba del campo");
-    //myPort.write(0x06)
-    //myPort.write(0x10)
+    myPort.write(0x06)
+    myPort.write(0x10)
   }
     
     //Detect shot 
